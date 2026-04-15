@@ -13,9 +13,9 @@ app.post("/api/contact", async (req, res) => {
     const { name, email, phone, company, location, message } = req.body;
 
     await resend.emails.send({
-      from: "Apex Global <onboarding@resend.dev>",
-      to: "hasrazan810@gmail.com", // 👈 YOUR email
-      subject: "New Facility Request",
+      from: "Apex Global <noreply@mail.apexglobalfm.com>",
+      to: "info@apexglobalfm.com", 
+      subject: "New Facility Inquiry",
       html: `
         <h2>New Request</h2>
         <p><strong>Name:</strong> ${name}</p>

@@ -1204,7 +1204,7 @@ export default function ApexGlobalLandingPage() {
             </p>
             <div className="mt-8 space-y-4">
               <div className="flex items-center gap-3"><Phone className="h-5 w-5 text-sky-500" /> <span>+971 XX XXX XXXX</span></div>
-              <div className="flex items-center gap-3"><Mail className="h-5 w-5 text-sky-500" /> <span>info@globalapex.com</span></div>
+              <div className="flex items-center gap-3"><Mail className="h-5 w-5 text-sky-500" /> <span>info@apexglobalfm.com</span></div>
             </div>
           </div>
 
