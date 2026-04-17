@@ -115,8 +115,8 @@ const scenes = [
   },
   {
     title: "Heating, Ventilation, and Air Conditioning Repair",
-    before: "/table bad.png",
-    after: "/table good.png",
+    before: "/PHOTO-2026-04-17-12-01-26.jpg",
+    after: "/PHOTO-2026-04-17-12-01-26.jpg",
   },
 ];
 
