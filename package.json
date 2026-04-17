@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "server": "node --env-file=.env server.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -32,9 +33,8 @@
     "tailwindcss": "^3.4.1",
     "vite": "^8.0.0"
   },
-  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
-  "main": "eslint.config.js",
+  "description": "Apex Global FM - Facility Management landing page",
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Apex Global FM",
+  "license": "UNLICENSED"
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
 import {
   Building2,
@@ -70,12 +70,7 @@ const whyApexFaqs = [
   },
 ];
 
-const stats = [
-  { value: "24/7", label: "Response mindset" },
-  { value: "1 Hub", label: "For all facility requests" },
-  { value: "360Ã‚Â°", label: "Operational oversight" },
-  { value: "Ã¢Ë†Å¾", label: "Scalable support" },
-];
+
 
 const processJourney = [
   {
@@ -101,11 +96,6 @@ const stepPositions = [
   { x: "77%", y: "21%", trigger: 0.62 },
 ];
 
-const mobileStepPositions = [
-  { y: "12%", trigger: 0.22, side: "left" },
-  { y: "41%", trigger: 0.46, side: "right" },
-  { y: "70%", trigger: 0.62, side: "left" },
-];
 
 const scenes = [
   {
@@ -401,63 +391,6 @@ function TimelineStep({ step, pos, scrollProgress, glass, theme, compact = false
   );
 }
 
-function MobileTimelineStep({ step, pos, scrollProgress, glass, theme }) {
-  const opacity = useTransform(
-    scrollProgress,
-    [pos.trigger - 0.15, pos.trigger],
-    [0, 1]
-  );
-  const xOffset = useTransform(
-    scrollProgress,
-    [pos.trigger - 0.15, pos.trigger],
-    [pos.side === "left" ? -20 : 20, 0]
-  );
-  const dotScale = useTransform(
-    scrollProgress,
-    [pos.trigger - 0.15, pos.trigger],
-    [0.6, 1]
-  );
-
-  return (
-    <motion.div
-      className={`absolute w-[calc(50%-1.1rem)] max-w-[170px] ${
-        pos.side === "left" ? "left-1" : "right-1"
-      }`}
-      style={{
-        top: pos.y,
-        opacity,
-        x: xOffset,
-      }}
-    >
-      <motion.div
-        className={`absolute top-2 h-3.5 w-3.5 rounded-full bg-sky-400 shadow-[0_0_10px_rgba(56,189,248,0.55)] ${
-          pos.side === "left" ? "-right-4" : "-left-4"
-        }`}
-        style={{ scale: dotScale }}
-      />
-
-      <div className={`rounded-2xl border p-3 backdrop-blur-md ${glass}`}>
-        <div className="mb-1 text-[10px] font-semibold uppercase tracking-widest text-sky-400">
-          Step {step.id}
-        </div>
-        <div
-          className={`mb-1 text-sm font-bold ${
-            theme === "dark" ? "text-white" : "text-slate-900"
-          }`}
-        >
-          {step.title}
-        </div>
-        <div
-          className={`text-xs leading-relaxed ${
-            theme === "dark" ? "text-slate-400" : "text-slate-500"
-          }`}
-        >
-          {step.text}
-        </div>
-      </div>
-    </motion.div>
-  );
-}
 
 function WorkplaceJourney({ theme, glass }) {
   const sectionRef = useRef(null);
@@ -537,39 +470,67 @@ function WorkplaceJourney({ theme, glass }) {
         ))}
       </div>
 
-      <div className="relative min-h-[540px] md:hidden">
+      <div className="relative md:hidden">
+        {/* Track + animated fill line */}
+        <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-sky-200/60" />
         <svg
-          viewBox="0 0 320 540"
-          fill="none"
-          className="pointer-events-none absolute inset-0 h-full w-full"
+          className="pointer-events-none absolute left-1/2 top-0 h-full w-px -translate-x-1/2 overflow-visible"
+          viewBox="0 0 2 100"
           preserveAspectRatio="none"
+          fill="none"
         >
-          <motion.path
-            d="M160,34 C160,140 160,140 160,248 C160,356 160,356 160,506"
-            stroke="url(#skyGradientMobile)"
-            strokeWidth="3"
-            fill="none"
-            strokeLinecap="round"
+          <motion.line
+            x1="1" y1="0" x2="1" y2="100"
+            stroke="#38bdf8"
+            strokeWidth="2"
+            vectorEffect="non-scaling-stroke"
             style={{ pathLength, opacity: lineOpacity }}
           />
-          <defs>
-            <linearGradient id="skyGradientMobile" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#38bdf8" />
-              <stop offset="100%" stopColor="#06b6d4" />
-            </linearGradient>
-          </defs>
         </svg>
 
-        {mobileStepPositions.map((pos, idx) => (
-          <MobileTimelineStep
-            key={`mobile-${idx}`}
-            step={processJourney[idx]}
-            pos={pos}
-            scrollProgress={smoothProgress}
-            glass={glass}
-            theme={theme}
-          />
-        ))}
+        {/* Steps */}
+        <div className="flex flex-col gap-10 py-4">
+          {processJourney.map((step, idx) => {
+            const side = idx % 2 === 0 ? "left" : "right";
+            return (
+              <motion.div
+                key={idx}
+                className={`relative flex w-full items-start gap-3 ${side === "right" ? "flex-row-reverse" : ""}`}
+                initial={{ opacity: 0, x: side === "left" ? -20 : 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+              >
+                {/* Card — takes up ~45% width on each side */}
+                <div className={`w-[calc(50%-1.5rem)] rounded-2xl border p-3 backdrop-blur-md ${glass}`}>
+                  <div className="mb-1 text-[10px] font-semibold uppercase tracking-widest text-sky-400">
+                    Step {step.id}
+                  </div>
+                  <div className={`mb-1 text-sm font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
+                    {step.title}
+                  </div>
+                  <div className={`text-xs leading-relaxed ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}>
+                    {step.text}
+                  </div>
+                </div>
+
+                {/* Spacer to center dot on line */}
+                <div className="flex w-12 shrink-0 flex-col items-center pt-2">
+                  <motion.div
+                    className="h-3.5 w-3.5 rounded-full bg-sky-400 shadow-[0_0_10px_rgba(56,189,248,0.6)]"
+                    initial={{ scale: 0.5 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.35, delay: idx * 0.1 + 0.2 }}
+                  />
+                </div>
+
+                {/* Empty opposite side */}
+                <div className="w-[calc(50%-1.5rem)]" />
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
@@ -734,12 +695,12 @@ function FloatingOrbital() {
 }
 
 export default function ApexGlobalLandingPage() {
-  const [theme, setTheme] = useState("light");
+  const [theme] = useState("light");
   const [menuOpen, setMenuOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [activeFaq, setActiveFaq] = useState(null);
-  const [countryCode, setCountryCode] = useState("+971");
+  const [countryCode, setCountryCode] = useState("+1");
   const { scrollYProgress } = useScroll();
 
   useEffect(() => {
@@ -752,15 +713,7 @@ export default function ApexGlobalLandingPage() {
     return () => clearTimeout(timeout);
   }, [sent]);
 
-  const mailtoLink = useMemo(() => {
-    const subject = encodeURIComponent("Facility Support Request");
-    const body = encodeURIComponent(
-      "Hello Apex Global,%0D%0A%0D%0AI'd like to discuss facility management support for our office/company.%0D%0A%0D%0AName:%0D%0ACompany:%0D%0AIssue / Need:%0D%0ALocation:%0D%0A%0D%0AThank you."
-    );
-    return `mailto:hello@apexglobalfm.com?subject=${subject}&body=${body}`;
-  }, []);
-
-  const shell =
+const shell =
     theme === "dark"
       ? "bg-[#0d1b2a] text-white"
       : "bg-[#f3f8fe] text-slate-900";
@@ -842,9 +795,9 @@ export default function ApexGlobalLandingPage() {
         </AnimatePresence>
       </header>
 
-      <section className="relative mx-auto min-h-[calc(100vh-86px)] max-w-[92rem] px-6 pb-10 pt-0 lg:px-8 lg:pb-12">
+      <section className="relative mx-auto max-w-[92rem] px-6 pt-10 pb-6 lg:px-8 lg:pt-14 lg:pb-8">
         <div className="grid items-start gap-10 lg:grid-cols-2 lg:items-center">
-          <div className="lg:-mt-3">
+          <div className="text-center lg:text-left lg:-mt-3">
             <h1 className="mt-1 text-4xl font-semibold leading-tight md:text-6xl">
               <span className="block">We keep the</span>
               <span className="block">workplace</span>
@@ -863,11 +816,11 @@ export default function ApexGlobalLandingPage() {
               </span>
             </h1>
 
-            <p className={`mt-3 max-w-lg text-base md:text-lg ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}>
+            <p className={`mt-3 max-w-lg text-base md:text-lg mx-auto lg:mx-0 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}>
               Apex Global manages the operational pressure behind offices and companies: repairs, urgent dispatch, and facility logistics that keep business running.
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-4">
+            <div className="mt-6 flex flex-wrap justify-center gap-4 lg:justify-start">
               <motion.a
                 href="#contact"
                 whileHover={{ scale: 1.03 }}
@@ -909,7 +862,7 @@ export default function ApexGlobalLandingPage() {
               ].map(([num, label]) => (
                 <div
                   key={num}
-                  className={`group relative mx-auto flex aspect-square w-full max-w-[98px] flex-col items-center justify-center overflow-hidden rounded-xl border text-center transition ${
+                  className={`group relative mx-auto flex aspect-square w-full max-w-[114px] flex-col items-center justify-center overflow-hidden rounded-xl border text-center transition ${
                     theme === "dark"
                       ? "border-slate-300/30 bg-gradient-to-b from-slate-500/35 via-slate-400/25 to-slate-500/35"
                       : "border-slate-300/90 bg-white/65 hover:border-slate-300 hover:bg-gradient-to-b hover:from-slate-100 hover:via-slate-200 hover:to-slate-300 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_10px_20px_-16px_rgba(71,85,105,0.65)]"
@@ -1194,20 +1147,39 @@ export default function ApexGlobalLandingPage() {
         </div>
       </section>
 
-      <section id="contact" className="mx-auto max-w-[92rem] px-6 pb-24 pt-10 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-          <div>
+      <section id="contact" className="mx-auto max-w-[92rem] px-6 pb-20 pt-10 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16 lg:items-start">
+
+          {/* Left: info */}
+          <div className="lg:pt-2">
             <div className="text-sm uppercase tracking-[0.35em] text-sky-500">Contact us</div>
-            <h2 className="mt-4 text-3xl font-semibold md:text-5xl">Let us build the cleaner next version.</h2>
-            <p className={`mt-5 max-w-xl text-lg leading-8 ${theme === "dark" ? "text-slate-300" : "text-slate-600"}`}>
-              Enter your contact details and a brief description of your facility needs or inquiries , and we'll be in touch you to discuss how we can support you.
+            <h2 className="mt-2 text-3xl font-semibold leading-tight md:text-4xl">Let us build the cleaner next version.</h2>
+            <p className={`mt-3 text-base leading-7 ${theme === "dark" ? "text-slate-300" : "text-slate-500"}`}>
+              Enter your contact details and a brief description of your facility needs or inquiries, and we'll be in touch to discuss how we can support you.
             </p>
-            <div className="mt-8 space-y-4">
-              <div className="flex items-center gap-3"><Phone className="h-5 w-5 text-sky-500" /> <span>+971 XX XXX XXXX</span></div>
-              <div className="flex items-center gap-3"><Mail className="h-5 w-5 text-sky-500" /> <span>info@apexglobalfm.com</span></div>
+            <div className="mt-5 space-y-3">
+              <a
+                href="tel:+13134847424"
+                className={`group flex items-center gap-3 text-sm font-medium transition-colors hover:text-sky-500 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-500 transition-colors group-hover:bg-sky-100">
+                  <Phone className="h-4 w-4" />
+                </span>
+                (313) 484-7424
+              </a>
+              <a
+                href="mailto:info@apexglobalfm.com"
+                className={`group flex items-center gap-3 text-sm font-medium transition-colors hover:text-sky-500 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-500 transition-colors group-hover:bg-sky-100">
+                  <Mail className="h-4 w-4" />
+                </span>
+                info@apexglobalfm.com
+              </a>
             </div>
           </div>
 
+          {/* Right: form */}
           <motion.form
             onSubmit={async (e) => {
               e.preventDefault();
@@ -1228,12 +1200,9 @@ export default function ApexGlobalLandingPage() {
               try {
                 await fetch("http://localhost:5000/api/contact", {
                   method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
+                  headers: { "Content-Type": "application/json" },
                   body: JSON.stringify(data),
                 });
-
                 setSent(true);
               } catch (err) {
                 console.error(err);
@@ -1245,81 +1214,87 @@ export default function ApexGlobalLandingPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.65 }}
-            className={`relative w-full max-w-[560px] justify-self-end rounded-[2rem] border p-4 md:p-5 ${glass}`}
+            className={`w-full rounded-2xl border p-5 md:p-6 ${glass}`}
           >
             <div className="grid gap-3 md:grid-cols-2">
               <Input
                 required
                 name="name"
                 placeholder="Your name"
-                className={`h-10 rounded-2xl bg-transparent text-sm ${theme === "dark" ? "border-white/20" : "border-slate-300"}`}
+                className={`h-10 rounded-xl bg-transparent text-sm ${theme === "dark" ? "border-white/20" : "border-slate-200"}`}
               />
               <Input
                 required
                 name="email"
                 type="email"
                 placeholder="Work email"
-                className={`h-10 rounded-2xl bg-transparent text-sm ${theme === "dark" ? "border-white/20" : "border-slate-300"}`}
+                className={`h-10 rounded-xl bg-transparent text-sm ${theme === "dark" ? "border-white/20" : "border-slate-200"}`}
               />
               <Input
                 name="company"
                 placeholder="Company"
-                className={`h-10 rounded-2xl bg-transparent text-sm ${theme === "dark" ? "border-white/20" : "border-slate-300"}`}
+                className={`h-10 rounded-xl bg-transparent text-sm ${theme === "dark" ? "border-white/20" : "border-slate-200"}`}
               />
               <Input
                 name="location"
                 placeholder="Location"
-                className={`h-10 rounded-2xl bg-transparent text-sm ${theme === "dark" ? "border-white/20" : "border-slate-300"}`}
+                className={`h-10 rounded-xl bg-transparent text-sm ${theme === "dark" ? "border-white/20" : "border-slate-200"}`}
               />
               <div className="flex items-center gap-2 md:col-span-2">
-                <div className="w-[120px] shrink-0">
+                <div className="w-[110px] shrink-0">
                   <CountryCodePicker value={countryCode} onChange={setCountryCode} theme={theme} />
                 </div>
                 <input
                   name="phone"
                   type="tel"
                   placeholder="Phone number"
-                  className={`h-10 w-[150px] shrink-0 rounded-2xl border bg-transparent px-3 text-sm ${
+                  className={`h-10 flex-1 rounded-xl border bg-transparent px-3 text-sm ${
                     theme === "dark"
                       ? "border-white/20 text-slate-200 placeholder:text-slate-400"
-                      : "border-slate-300 text-slate-700 placeholder:text-slate-400"
+                      : "border-slate-200 text-slate-700 placeholder:text-slate-400"
                   }`}
                 />
               </div>
               <Textarea
                 name="message"
                 placeholder="Tell us what needs attention..."
-                className={`min-h-[120px] rounded-2xl bg-transparent text-sm md:col-span-2 ${theme === "dark" ? "border-white/20" : "border-slate-300"}`}
+                className={`min-h-[100px] rounded-xl bg-transparent text-sm md:col-span-2 ${theme === "dark" ? "border-white/20" : "border-slate-200"}`}
               />
             </div>
-            <div className="mt-5 flex justify-end">
-              <motion.div
-                animate={
-                  isSubmitting
-                    ? { scale: [1, 1.04, 1], y: [0, -1, 0] }
-                    : sent
-                      ? { scale: [1, 1.08, 1], rotate: [0, -2, 0] }
-                      : { scale: 1, rotate: 0, y: 0 }
-                }
-                transition={{ duration: 0.35, ease: "easeInOut" }}
-              >
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="inline-flex h-10 items-center whitespace-nowrap rounded-full bg-sky-500 px-6 text-white hover:bg-sky-600 disabled:cursor-not-allowed disabled:opacity-70"
+            <div className="mt-4 flex items-center justify-between">
+              {sent && (
+                <p className="text-sm text-sky-500 font-medium">Message sent — we'll be in touch.</p>
+              )}
+              <div className={sent ? "" : "ml-auto"}>
+                <motion.div
+                  animate={
+                    isSubmitting
+                      ? { scale: [1, 1.04, 1], y: [0, -1, 0] }
+                      : sent
+                        ? { scale: [1, 1.08, 1], rotate: [0, -2, 0] }
+                        : { scale: 1, rotate: 0, y: 0 }
+                  }
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
                 >
-                  {isSubmitting ? "Submitting..." : "Send request"}
-                  <motion.span
-                    className="ml-2 inline-flex"
-                    animate={isSubmitting ? { x: [0, 3, 0] } : { x: 0 }}
-                    transition={{ duration: 0.6, repeat: isSubmitting ? Infinity : 0 }}
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="inline-flex h-10 items-center whitespace-nowrap rounded-full bg-sky-500 px-6 text-white hover:bg-sky-600 disabled:cursor-not-allowed disabled:opacity-70"
                   >
-                    <ArrowRight className="h-4 w-4" />
-                  </motion.span>
-                </Button>
-              </motion.div>
+                    {isSubmitting ? "Submitting..." : "Send request"}
+                    <motion.span
+                      className="ml-2 inline-flex"
+                      animate={isSubmitting ? { x: [0, 3, 0] } : { x: 0 }}
+                      transition={{ duration: 0.6, repeat: isSubmitting ? Infinity : 0 }}
+                    >
+                      <ArrowRight className="h-4 w-4" />
+                    </motion.span>
+                  </Button>
+                </motion.div>
+              </div>
             </div>
           </motion.form>
+
         </div>
       </section>
 
