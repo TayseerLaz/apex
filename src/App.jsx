@@ -114,7 +114,7 @@ const scenes = [
     after: "/pipe good.png",
   },
   {
-    title: "Structural repair",
+    title: "Heating, Ventilation, and Air Conditioning Repair",
     before: "/table bad.png",
     after: "/table good.png",
   },
