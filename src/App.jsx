@@ -7,6 +7,7 @@ import {
   Paintbrush2,
   Phone,
   Mail,
+  MapPin,
   ArrowRight,
   Check,
   ChevronDown,
@@ -1175,6 +1176,20 @@ const shell =
                   <Mail className="h-4 w-4" />
                 </span>
                 info@apexglobalfm.com
+              </a>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=16192+Coastal+Highway+Lewes+Delaware+19958"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`group flex items-start gap-3 text-sm font-medium transition-colors hover:text-sky-500 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-500 transition-colors group-hover:bg-sky-100">
+                  <MapPin className="h-4 w-4" />
+                </span>
+                <span className="leading-snug">
+                  16192 Coastal Highway<br />
+                  Lewes, Delaware 19958
+                </span>
               </a>
             </div>
           </div>
