@@ -1160,13 +1160,13 @@ const shell =
             </p>
             <div className="mt-5 space-y-3">
               <a
-                href="tel:+13134847424"
+                href="tel:+13026140753"
                 className={`group flex items-center gap-3 text-sm font-medium transition-colors hover:text-sky-500 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}
               >
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-500 transition-colors group-hover:bg-sky-100">
                   <Phone className="h-4 w-4" />
                 </span>
-                (313) 484-7424
+                (302) 614-0753
               </a>
               <a
                 href="mailto:info@apexglobalfm.com"
