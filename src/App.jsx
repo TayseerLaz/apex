@@ -1178,7 +1178,7 @@ const shell =
                 info@apexglobalfm.com
               </a>
               <a
-                href="https://www.google.com/maps/search/?api=1&query=16192+Coastal+Highway+Lewes+Delaware+19958"
+                href="https://www.google.com/maps/search/?api=1&query=101+Ipswich+Ct+Dover+Delaware+19901"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`group flex items-start gap-3 text-sm font-medium transition-colors hover:text-sky-500 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}
@@ -1187,8 +1187,8 @@ const shell =
                   <MapPin className="h-4 w-4" />
                 </span>
                 <span className="leading-snug">
-                  16192 Coastal Highway<br />
-                  Lewes, Delaware 19958
+                  101 Ipswich Ct<br />
+                  Dover, Delaware 19901
                 </span>
               </a>
             </div>
