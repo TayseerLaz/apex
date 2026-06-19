@@ -1160,13 +1160,13 @@ const shell =
             </p>
             <div className="mt-5 space-y-3">
               <a
-                href="tel:+13026140753"
+                href="tel:+13028100018"
                 className={`group flex items-center gap-3 text-sm font-medium transition-colors hover:text-sky-500 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}
               >
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-500 transition-colors group-hover:bg-sky-100">
                   <Phone className="h-4 w-4" />
                 </span>
-                (302) 614-0753
+                (302) 810-0018
               </a>
               <a
                 href="mailto:info@apexglobalfm.com"
@@ -1318,10 +1318,24 @@ const shell =
           theme === "dark" ? "border-white/10" : "border-slate-300/70"
         }`}
       >
-        <div className="mx-auto flex max-w-[92rem] items-center justify-center px-6 py-4 text-center text-sm lg:px-8">
+        <div className="mx-auto flex max-w-[92rem] flex-col items-center justify-center gap-2 px-6 py-4 text-center text-sm sm:flex-row sm:gap-6 lg:px-8">
           <p className={theme === "dark" ? "text-slate-400" : "text-slate-500"}>
             Copyright {new Date().getFullYear()} Apex Global Facility Management LLC.
           </p>
+          <nav className="flex items-center gap-6">
+            <a
+              href="#/privacy"
+              className={`transition hover:text-sky-500 ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}
+            >
+              Privacy Policy
+            </a>
+            <a
+              href="#/terms"
+              className={`transition hover:text-sky-500 ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}
+            >
+              Terms &amp; Conditions
+            </a>
+          </nav>
         </div>
       </footer>
 
