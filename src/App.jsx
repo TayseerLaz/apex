@@ -1158,6 +1158,17 @@ const shell =
             <p className={`mt-3 text-base leading-7 ${theme === "dark" ? "text-slate-300" : "text-slate-500"}`}>
               Enter your contact details and a brief description of your facility needs or inquiries, and we'll be in touch to discuss how we can support you.
             </p>
+            <p className={`mt-3 text-base leading-7 ${theme === "dark" ? "text-slate-300" : "text-slate-500"}`}>
+              Clients will call{" "}
+              <a href="tel:+13023664768" className="font-medium text-sky-500 transition-colors hover:text-sky-600">
+                (302) 366-4768
+              </a>{" "}
+              or complete the{" "}
+              <a href="#contact" className="font-medium text-sky-500 transition-colors hover:text-sky-600">
+                webform
+              </a>{" "}
+              to initiate the campaign.
+            </p>
             <div className="mt-5 space-y-3">
               <a
                 href="tel:+13023664768"
