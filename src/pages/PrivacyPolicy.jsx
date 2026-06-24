@@ -186,8 +186,8 @@ export default function PrivacyPolicy() {
             info@apexglobalfm.com
           </a>{" "}
           or by phone at{" "}
-          <a href="tel:+13028100018" className="text-sky-600 underline">
-            (302) 810-0018
+          <a href="tel:+13023664768" className="text-sky-600 underline">
+            (302) 366-4768
           </a>
           . We will acknowledge and respond within the time required by applicable law (generally within 45
           days, with one extension of up to 45 additional days where permitted, and we will notify you of any
@@ -263,14 +263,14 @@ export default function PrivacyPolicy() {
           <br />
           Attn: Privacy
           <br />
-          101 Ipswich Ct, Dover, Delaware 19901
+          343 Fiddlers Green, Dover, DE 19904
           <br />
           <a href="mailto:info@apexglobalfm.com" className="text-sky-600 underline">
             info@apexglobalfm.com
           </a>
           <br />
-          <a href="tel:+13028100018" className="text-sky-600 underline">
-            (302) 810-0018
+          <a href="tel:+13023664768" className="text-sky-600 underline">
+            (302) 366-4768
           </a>
         </p>
       </Section>

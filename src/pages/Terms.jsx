@@ -72,8 +72,8 @@ export default function Terms() {
           <li>Standard message and data rates may apply.</li>
           <li>
             Opt out at any time by replying STOP. For help, reply HELP or contact us at{" "}
-            <a href="tel:+13028100018" className="text-sky-600 underline">
-              (302) 810-0018
+            <a href="tel:+13023664768" className="text-sky-600 underline">
+              (302) 366-4768
             </a>{" "}
             or{" "}
             <a href="mailto:info@apexglobalfm.com" className="text-sky-600 underline">
@@ -217,14 +217,14 @@ export default function Terms() {
         <p>
           Apex Global Facility Management LLC
           <br />
-          101 Ipswich Ct, Dover, Delaware 19901
+          343 Fiddlers Green, Dover, DE 19904
           <br />
           <a href="mailto:info@apexglobalfm.com" className="text-sky-600 underline">
             info@apexglobalfm.com
           </a>
           <br />
-          <a href="tel:+13028100018" className="text-sky-600 underline">
-            (302) 810-0018
+          <a href="tel:+13023664768" className="text-sky-600 underline">
+            (302) 366-4768
           </a>
         </p>
       </Section>

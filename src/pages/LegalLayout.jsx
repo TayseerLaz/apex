@@ -36,10 +36,10 @@ export default function LegalLayout({ title, effectiveDate, lastUpdated, childre
         <div className="mx-auto flex max-w-[92rem] flex-col items-center gap-3 px-6 py-6 text-center text-sm text-slate-500 lg:px-8">
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
             <span className="inline-flex items-center gap-2">
-              <MapPin className="h-4 w-4 text-sky-500" /> 101 Ipswich Ct, Dover, Delaware 19901
+              <MapPin className="h-4 w-4 text-sky-500" /> 343 Fiddlers Green, Dover, DE 19904
             </span>
-            <a href="tel:+13028100018" className="inline-flex items-center gap-2 transition hover:text-sky-500">
-              <Phone className="h-4 w-4 text-sky-500" /> (302) 810-0018
+            <a href="tel:+13023664768" className="inline-flex items-center gap-2 transition hover:text-sky-500">
+              <Phone className="h-4 w-4 text-sky-500" /> (302) 366-4768
             </a>
             <a href="mailto:info@apexglobalfm.com" className="inline-flex items-center gap-2 transition hover:text-sky-500">
               <Mail className="h-4 w-4 text-sky-500" /> info@apexglobalfm.com

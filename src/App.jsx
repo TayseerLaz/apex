@@ -1160,13 +1160,13 @@ const shell =
             </p>
             <div className="mt-5 space-y-3">
               <a
-                href="tel:+13028100018"
+                href="tel:+13023664768"
                 className={`group flex items-center gap-3 text-sm font-medium transition-colors hover:text-sky-500 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}
               >
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-500 transition-colors group-hover:bg-sky-100">
                   <Phone className="h-4 w-4" />
                 </span>
-                (302) 810-0018
+                (302) 366-4768
               </a>
               <a
                 href="mailto:info@apexglobalfm.com"
@@ -1178,7 +1178,7 @@ const shell =
                 info@apexglobalfm.com
               </a>
               <a
-                href="https://www.google.com/maps/search/?api=1&query=101+Ipswich+Ct+Dover+Delaware+19901"
+                href="https://www.google.com/maps/search/?api=1&query=343+Fiddlers+Green+Dover+DE+19904"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`group flex items-start gap-3 text-sm font-medium transition-colors hover:text-sky-500 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}
@@ -1187,8 +1187,8 @@ const shell =
                   <MapPin className="h-4 w-4" />
                 </span>
                 <span className="leading-snug">
-                  101 Ipswich Ct<br />
-                  Dover, Delaware 19901
+                  343 Fiddlers Green<br />
+                  Dover, DE 19904
                 </span>
               </a>
             </div>
@@ -1270,6 +1270,16 @@ const shell =
                   }`}
                 />
               </div>
+              <p className={`text-xs leading-5 md:col-span-2 ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}>
+                By providing my phone number to Apex Global Facility Management LLC, I agree and acknowledge that
+                Apex Global Facility Management LLC may send text messages to my wireless phone number for any
+                purpose. Message and data rates may apply. Message frequency will vary, and you will be able to
+                opt out by replying "STOP". For more information on how your data will be handled, please visit our{" "}
+                <a href="#/privacy" className="font-medium text-sky-500 underline hover:text-sky-600">
+                  Privacy Policy
+                </a>
+                .
+              </p>
               <Textarea
                 name="message"
                 placeholder="Tell us what needs attention..."
